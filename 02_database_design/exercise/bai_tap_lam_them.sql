@@ -1,5 +1,7 @@
 create database bai_tap_lam_them;
 
+use bai_tap_lam_them;
+
 Create table customers(
 id_customer varchar(50) primary key,
 first_name varchar(50) not null,
@@ -76,3 +78,5 @@ id_product int,
 constraint fk_order_order_detail foreign key (id_order) references orders (id_order),
 constraint fk_product_order_detail foreign key (id_product) references products (id_product)
 );
+
+drop database bai_tap_lam_them;
