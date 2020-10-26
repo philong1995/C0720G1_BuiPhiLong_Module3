@@ -1,3 +1,5 @@
+-- cau 1 :
+
 create database case_study;
 
 use case_study;
@@ -106,3 +108,21 @@ create table LoaiDichVu(
 IDLoaiDichVu int primary key,
 TenLoaiDichVu varchar(45) not null
 );
+
+-- cau 2: 
+
+select * from NhanVien 
+where ( HoTen like HoTen = '%H%' or HoTen = '%T%' or HoTen = '%K%') and length(HoTen) <= 15;
+
+-- cau 3:
+
+select * from KhachHang
+where (year(now()) - year(NgaySinh) <= 50 or year(now()) - year(NgaySinh) >= 18) and (DiaChi = 'Đà Nẵng' or DiaChi = 'Quảng Trị');
+
+-- cau 4:
+
+select KhachHang.HoTen as 'Tên Khách Hàng', count(HopDong.IDKhachHang) as 'Số Lần Thuê' from KhachHang
+join HopDong on KhachHang.IDKhachHang = HopDong.IDKhachHang
+join LoaiKhach on KhachHang.IDLoaiKhach = LoaiKhach.IDLoaiKhach
+group by HopDong.IDKhachHang 
+order by HopDong.IDKhachHang;
