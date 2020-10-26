@@ -1,0 +1,27 @@
+label.chu_dam{
+    font-weight: bolder;
+}
+label#chu_xanh_nhat{
+    color: dodgerblue;
+}
+label.chu_xanh_dam{
+    color: blue;
+}
+h1{
+    border-bottom: 1px solid grey;
+}
+p{
+    text-indent: 1cm;
+    line-height: 0.6cm;
+}
+body{
+    font-family: "Times New Roman";
+    text-align: justify;
+    width: 42.5%;
+}
+div{
+    margin-top: -20px;
+}
+label.chu_nho{
+    font-size: 10px ;
+}
