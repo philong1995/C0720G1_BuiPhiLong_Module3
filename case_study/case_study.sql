@@ -221,6 +221,10 @@ group by KhachHang.HoTen;
 
 -- cau 9:
 
+select HopDong.NgayLamHopDong as 'Ngày làm hợp đồng', sum(HopDong.TongTien) as 'Tổng tiền' from HopDong
+where year(HopDong.NgayLamHopDong) = 2019
+group by HopDong.NgayLamHopDong;
+
 -- cau 10: 
 
 -- cau 11:
