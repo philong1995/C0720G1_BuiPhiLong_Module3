@@ -1,0 +1,87 @@
+#main{
+    background: black;
+    width: 100%;
+    height: 100%;
+    font-family: Arial;
+    font-size: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#header{
+    width: 100%;
+    background: blue;
+    color: white;
+    margin-bottom: 10px;
+    padding: 0.5px;
+}
+#header ul li {
+    display: inline;
+    margin: auto 10px auto 10px;
+}
+#header li a{
+    text-decoration:none;
+    color: white;
+}
+#header li{
+    text-align: center;
+    cursor:pointer;
+    position: relative;
+}
+#header li a:hover{
+    color: chocolate;
+}
+#header_link h2{
+    text-align: center;
+    background: red;
+    color: white;
+    padding: 0.5px;
+    margin: 10px;
+}
+#section{
+    width: 100%;
+    min-height: 500px;
+    background: black;
+}
+#section div{
+    text-align: center;
+    cursor:pointer;
+    position: relative;
+}
+#section a:hover{
+    color: violet;
+}
+#section a{
+    text-decoration:none;
+    color: white;
+    text-align: center;
+}
+#left_1{
+    width: 20%;
+    margin-bottom: 0;
+    padding: 0;
+    float: left;
+}
+#left_2{
+    width: 20%;
+    margin-bottom: 0;
+    padding: 0;
+    float: left;
+}
+#left_3{
+    width: 20%;
+    margin-bottom: 0;
+    padding: 0;
+    float: left;
+}
+#left_4{
+    width: 20%;
+    margin-bottom: 0;
+    padding: 0;
+    float: left;
+}
+#left_5{
+    width: 20%;
+    margin-bottom: 0;
+    padding: 0;
+    float: right;
+}
