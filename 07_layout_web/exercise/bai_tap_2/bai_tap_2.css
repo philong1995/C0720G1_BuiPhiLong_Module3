@@ -1,0 +1,30 @@
+body{
+    font-family: Arial,Tahoma;
+    font-size: 0.9em;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+header{
+    background: lightskyblue;
+    padding: 3px;
+    margin: 0;
+    text-align: center;
+}
+header ul {
+    padding: 0;
+}
+header ul li {
+    display: inline;
+    margin: 5px;
+}
+section{
+    background: #CDCDCD;
+    padding: 5px;
+}
+article{
+    background: white;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+}

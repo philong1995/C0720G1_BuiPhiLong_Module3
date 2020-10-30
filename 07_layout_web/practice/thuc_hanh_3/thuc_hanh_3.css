@@ -1,0 +1,42 @@
+body{
+    font-family: Arial;
+}
+#menu, #menu ul, #menu li{
+    padding: 0;
+    margin: 0;
+}
+#menu li{
+    text-align: center;
+    /* list-style: none: Bỏ đi các ký hiệu đánh dấu đầu mỗi phần tử của danh sách (bullet) */
+    list-style: none;
+    position: relative;
+    /* Cố định chiều rộng và chiều cao của một phần tử trong danh sách */
+    width: 200px;
+    height: 30px;
+    /* Cố định lề trái (left) và phải (right) dành cho các nội dung bên trong phần tử danh sách (li) với khung viền của nó */
+    padding:0 20px;
+    /* Đổi màu nền sang mà đen cho tất cả các phần tử trong danh sách */
+    background-color: black;
+    line-height: 30px;
+    /* cursor: pointer: chuyển biểu tượng của con trỏ màn hình sang hình bàn tay */
+    cursor:pointer;
+}
+#menu li a{
+    /* Bỏ gạch chân của liên kết */
+    text-decoration:none;
+    /* Đổi mài liên kết thành màu trắng */
+    color: white;
+}
+#menu li:hover{
+    background-color:red;
+}
+#menu ul ul{
+    position: absolute;
+    top:0;
+    left:240px;
+    visibility:hidden;
+}
+#menu ul li:hover ul{
+    /*mô tả ẩn các danh sách con*/
+    visibility:visible;
+}
