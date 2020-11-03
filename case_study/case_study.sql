@@ -221,14 +221,96 @@ group by KhachHang.HoTen;
 
 -- cau 9:
 
-select HopDong.NgayLamHopDong as 'Ngày làm hợp đồng', sum(HopDong.TongTien) as 'Tổng tiền' from HopDong
-where year(HopDong.NgayLamHopDong) = 2019
+select month(HopDong.NgayLamHopDong) as 'Tháng làm hợp đồng', sum(HopDong.TongTien) as 'Tổng tiền' from HopDong
+where year(HopDong.NgayLamHopDong) = 2020
 group by HopDong.NgayLamHopDong;
 
 -- cau 10: 
 
 -- cau 11:
 
+select DichVuDiKem.TenDichVuDiKem as 'Tên dịch vụ đi kèm' from DichVuDiKem
+join HopDongChitiet on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDDichVuDiKem
+join HopDong on HopDongChiTiet.IDHopDong = HopDong.IDHopDong
+join KhachHang on HopDong.IDKhachHang = KhachHang.IDKhachHang
+join LoaiKhach on KhachHang.IDLoaiKhach = LoaiKhach.IDLoaiKhach
+where LoaiKhach.TenLoaiKhach ='Diamond' and (KhachHang.DiaChi ='Quãng Ngãi' or KhachHang.DiaChi ='Vinh');
 
+-- cau 12:
 
+select HopDong.IDHopDong, NhanVien.HoTen, KhachHang.HoTen, KhachHang.SDT,DichVu.TenDichVu, sum(HopDongChiTiet.IDDichVuDiKem) as 'Số lượng', HopDong.TienDatCoc from HopDong
+join NhanVien on HopDong.IDNhanVien = NhanVien.IDNhanVien
+join KhachHang on HopDong.IDKhachHang = KhachHang.IDKhachHang
+join DichVu on HopDong.IDDichVu = DichVu.IDDichVu
+left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+where (year(HopDong.NgayLamHopDong) = 2019 and month(HopDong.NgayLamHopDong) in (10,11,12) )
+and not ((year(HopDong.NgayLamHopDong) = 2019 and month(HopDong.NgayLamHopDong) in (1,2,3,4,5,6)))
+group by HopDong.IDHopDong;
+
+-- cau 13:
+
+select DichVuDiKem.TenDichVuDiKem as 'Dịch vụ đi kèm', sum(HopDongChiTiet.IDSoLuong) as 'Số lần sử dụng' from DichVuDiKem
+join HopDongChiTiet on DichVuDiKem.IDDichVuDiKem = HopDongChiTiet.IDHopDongChiTiet
+group by DichVuDiKem.TenDichVuDiKem;
+
+-- cau 14: 
+
+select HopDong.IDHopDong, LoaiDichVu.TenLoaiDichVu, DichVuDiKem.TenDichVuDiKem, count(HopDongChiTiet.IDDichVuDiKem) as 'Số lần dùng' from HopDong
+join DichVu on HopDong.IDDichVu = DichVu.IDDichVu
+join LoaiDichVu on DichVu.IDLoaiDichVu = LoaiDichVu.IDLoaiDichVu
+left join HopDongChiTiet on HopDong.IDHopDong = HopDongChiTiet.IDHopDong
+join DichVuDiKem on HopDongChiTiet.IDDichVuDiKem = DichVuDiKem.IDDichVuDiKem
+group by HopDong.IDHopDong, DichVuDiKem.TenDichVuDiKem
+having count(HopDongChiTiet.IDDichVuDiKem) = 1;
+
+-- cau 15:
+
+select NhanVien.IdNhanVien, NhanVien.HoTen, TrinhDo.TrinhDo, BoPhan.TenBoPhan, NhanVien.SDT, NhanVien.DiaChi from NhanVien
+join TrinhDo on NhanVien.IdTrinhDo = TrinhDo.IdTrinhDo
+join BoPhan on NhanVien.IdBoPhan = BoPhan.IdBoPhan
+left join HopDong on NhanVien.IDNhanVien = HopDong.IDNhanVien
+where year(HopDong.NgayLamHopDong) between 2018 and 2019
+group by NhanVien.IdNhanVien
+having count(HopDong.IDNhanVien) in (1,3);
+
+-- cau 16:
+
+SET SQL_SAFE_UPDATES=0;
+delete from NhanVien where NhanVien.IdNhanVien not in (select HopDong.IdNhanVien from HopDong);
+
+-- cau 17:
+
+update KhachHang set KhachHang.IDLoaiKhach = 1
+where KhachHang.IDLoaiKhach = 2 and KhachHang.IDKhachHang in
+(select HopDong.IDKhachHang from HopDong where HopDong.TongTien > 10000000);
+
+-- cau 18:
+
+delete from KhachHang where KhachHang.IDKhachHang in
+(select HopDong.IDKhachHang from HopDong where year(HopDong.NgayLamHopDong) < 2016);
+
+-- cau 19:
+
+update DichVuDiKem set DichVuDiKem.Gia = DichVuDiKem.Gia*2
+where DichVuDiKem.IDDichVuDiKem in
+(select HopDongChiTiet.IDDichVuDiKem from HopDongChiTiet
+group by HopDongChiTiet.IDDichVuDiKem
+having count(HopDongChiTiet.IDDichVuDiKem) >= 10);
+
+-- cau 20:
+
+select IdNhanVien, HoTen,NgaySinh,SDT,DiaChi from NhanVien;
+select IDKhachHang,HoTen,NgaySinh,SDT,DiaChi from KhachHang;
+
+-- cau 21:
+
+create view V_NhanVien as 
+select NhanVien.HoTen, NhanVien.DiaChi from NhanVien
+where NhanVien.DiaChi = 'Hải Châu' and NhanVien.IdNhanVien in 
+(select HopDong.IDNhanVien from HopDong 
+where day(HopDong.NgayLamHopDong) =12 and month(HopDong.NgayLamHopDong) = 12 and year(HopDong.NgayLamHopDong) = 2019);
+
+-- cau 22:
+
+update V_NhanVien set NhanVien.DiaChi = 'Liên chiểu' where NhanVien.DiaChi = 'Hải Châu';
 
