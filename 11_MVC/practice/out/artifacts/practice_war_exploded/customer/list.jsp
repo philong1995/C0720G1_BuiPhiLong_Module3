@@ -24,8 +24,7 @@
         <th scope="col">Name</th>
         <th scope="col">Email</th>
         <th scope="col">Address</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Delete</th>
+        <th scope="col">Action</th>
     </tr>
     </thead>
     <tbody>
@@ -36,8 +35,10 @@
             <td><a href="/customers?action=view&id=${customer.getId()}">${customer.getName()}</a></td>
             <td>${customer.getEmail()}</td>
             <td>${customer.getAddress()}</td>
-            <td><a href="/customers?action=edit&id=${customer.getId()}" class="btn btn-primary">edit</a></td>
-            <td><a href="/customers?action=delete&id=${customer.getId()}" class="btn btn-danger">delete</a></td>
+            <td>
+                <a href="/customers?action=edit&id=${customer.getId()}" class="btn btn-primary">edit</a>
+                <a href="/customers?action=delete&id=${customer.getId()}" class="btn btn-danger">delete</a>
+            </td>
         </tr>
     </c:forEach>
 
