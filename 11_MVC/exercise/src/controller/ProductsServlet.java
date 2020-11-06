@@ -78,12 +78,12 @@ public class ProductsServlet extends HttpServlet {
 
     private void xemSanPham(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        Products xemSanPham = this.dichVuSanPham.findById(id);
+        Products sanPham = this.dichVuSanPham.findById(id);
         RequestDispatcher dispatcher;
-        if(xemSanPham == null){
+        if(sanPham == null){
             dispatcher = request.getRequestDispatcher("error-404.jsp");
         } else {
-            request.setAttribute("xemSanPham", xemSanPham);
+            request.setAttribute("xemSanPham", sanPham);
             dispatcher = request.getRequestDispatcher("product/view.jsp");
         }
         try {
