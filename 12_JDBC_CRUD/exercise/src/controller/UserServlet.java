@@ -39,7 +39,7 @@ public class UserServlet extends HttpServlet {
                     updateUser(request, response);
                     break;
                 case "find":
-                    findByCountry(request, response);
+                    findByName(request, response);
             }
         } catch (SQLException ex) {
             throw new ServletException(ex);
@@ -104,6 +104,20 @@ public class UserServlet extends HttpServlet {
         request.setAttribute("listUser", listUser);
         RequestDispatcher dispatcher = request.getRequestDispatcher("user/list.jsp");
         dispatcher.forward(request, response);
+    }
+
+    private void findByName(HttpServletRequest request, HttpServletResponse response){
+        List<User> userList = new ArrayList<>();
+        String name = request.getParameter("name");
+        userList = userDAO.findByName(name);
+        request.setAttribute("userList", userList);
+        try {
+            request.getRequestDispatcher("user/find.jsp").forward(request, response);
+        } catch (ServletException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void findByCountry(HttpServletRequest request, HttpServletResponse response) {

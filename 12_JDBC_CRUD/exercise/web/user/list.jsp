@@ -20,9 +20,12 @@
         <a href="/users?action=create">Add New User</a>
     </h2>
 </center>
-<form method="post" action="/users" class="ml-auto row" style="margin-right: 50px" >
-    <input type="text" width="10" style="width: 50px" class="form-control col-3" name="country">
-    <input type="submit" class="btn btn-info" value="find" name="action">
+<form method="post" action="/users" class="form-inline" >
+    <a class="navbar-brand"> </a>
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="name">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="find" name="action">Search</button>
+<%--    <input type="text" width="10" style="width: 50px" class="form-control col-3" name="country">--%>
+<%--    <input type="submit" class="btn btn-info" value="find" name="action">--%>
 </form>
 <div>
     <table border="1" class="table table-striped" style="color: darkblue">
